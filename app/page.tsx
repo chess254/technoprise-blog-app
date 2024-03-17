@@ -44,7 +44,7 @@ export default function Home() {
             </div>
           ))}
           {/* Pagination */}
-          <div className="col-span-3 flex justify-center mt-4">
+          <div className="col-span-3 flex justify-center mt-4 mb-20">
             {[...Array(totalPages)].map((_, index) => (
               <button
                 key={index}

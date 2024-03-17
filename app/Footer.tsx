@@ -3,7 +3,7 @@ import Image from "next/image";
 import Link from "next/link";
 function Footer() {
   return (
-    <footer className="bg-gray-200 p-1 flex justify-between items-center">
+    <footer className="bg-gray-200 p-1 flex justify-between items-center fixed bottom-0 w-full z-50">
       <Image
         src="/bloglogo.png"
         width={144}
