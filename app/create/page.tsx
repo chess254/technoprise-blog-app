@@ -1,18 +1,40 @@
-import Footer from "../Footer";
-import Header from "../Header";
+"use client";
+
+import React, { useState } from "react";
+import Footer from "../components/Footer";
+import Header from "../components/Header";
+import blogData from "../blogData"; // Import the existing blogData array
 
 export default function Posts() {
+  const [formData, setFormData] = useState({
+    title: "",
+    date: "",
+    slug: "",
+    content: "",
+    image: "",
+  });
+
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setFormData({ ...formData, [name]: value });
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    const updatedBlogData = [...blogData, formData];
+    blogData.push(formData);
+    // You might want to validate the form data before updating the array
+    console.log("Updated Blog Data:", updatedBlogData);
+    console.log(blogData);
+    // Now you can use updatedBlogData as needed, for example, send it to a server
+  };
+
   return (
     <>
-      <Header />
       <main className="flex-grow p-4 flex justify-center">
         <div className="flex items-center justify-center p-12 w-full max-w-[768px]">
           <div className="mx-auto w-full bg-white">
-            <form
-              className="py-6 px-9"
-              action="https://formbold.com/s/FORM_ID"
-              method="POST"
-            >
+            <form className="py-6 px-9" onSubmit={handleSubmit}>
               <div className="mb-5">
                 <p className="text-black font-bold">Create Blog Post</p>
                 <p className="text-black text-sm">
@@ -21,15 +43,18 @@ export default function Posts() {
                 <div className="my-4">
                   <label
                     className="block text-gray-700 text-xs mb-0"
-                    htmlFor="username"
+                    htmlFor="title"
                   >
                     Blog Title
                   </label>
                   <input
                     className="placeholder:text-xs shadow appearance-none border rounded w-full py-1 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-                    id="username"
+                    id="title"
                     type="text"
                     placeholder="Harry Potter"
+                    name="title"
+                    value={formData.title}
+                    onChange={handleChange}
                   />
                 </div>
                 <div className="my-4">
@@ -44,6 +69,9 @@ export default function Posts() {
                     id="date"
                     type="text"
                     placeholder="31/1/2024"
+                    name="date"
+                    value={formData.date}
+                    onChange={handleChange}
                   />
                 </div>
                 <div className="my-4">
@@ -58,6 +86,9 @@ export default function Posts() {
                     id="slug"
                     type="text"
                     placeholder="harry-potter"
+                    name="slug"
+                    value={formData.slug}
+                    onChange={handleChange}
                   />
                 </div>
               </div>
@@ -67,29 +98,7 @@ export default function Posts() {
                   Image
                 </label>
 
-                <div className="mb-8">
-                  <input
-                    type="file"
-                    name="file"
-                    id="file"
-                    className="sr-only"
-                  />
-                  <label
-                    htmlFor="file"
-                    className="relative flex min-h-[200px] items-center justify-center rounded-md border border-dashed border-[#e0e0e0] p-12 text-center"
-                  >
-                    <div>
-                      <span className="mb-2 block text-xs font-small text-[#07074D]">
-                        Please upload images in 100x100 pixels size, in either
-                        PNG or JPEG format.{" "}
-                      </span>
-
-                      <span className="inline-flex rounded border border-[#e0e0e0] py-2 px-7 text-base font-medium text-[#07074D]">
-                        Browse
-                      </span>
-                    </div>
-                  </label>
-                </div>
+                <div className="mb-8">{/* File input */}</div>
                 <div className="my-4">
                   <label
                     className="block text-gray-700 text-xs mb-0"
@@ -102,12 +111,18 @@ export default function Posts() {
                     id="content"
                     rows={8}
                     placeholder="Type Here"
+                    name="content"
+                    value={formData.content}
+                    onChange={handleChange}
                   />
                 </div>
               </div>
 
               <div>
-                <button className="hover:shadow-form w-full rounded-md bg-[#6A64F1] py-3 px-8 text-center text-base font-semibold text-white outline-none">
+                <button
+                  type="submit"
+                  className="hover:shadow-form w-full rounded-md bg-[#6A64F1] py-3 px-8 text-center text-base font-semibold text-white outline-none"
+                >
                   Send File
                 </button>
               </div>
