@@ -16,7 +16,7 @@ export default function Posts() {
               <div className="mb-5">
                 <p className="text-black font-bold">Create Blog Post</p>
                 <p className="text-black text-sm">
-                  Enter your blog detailshere. Click save when you're done.
+                  Enter your blog details here. Click save when you are done.
                 </p>
                 <div className="my-4">
                   <label
@@ -26,7 +26,7 @@ export default function Posts() {
                     Blog Title
                   </label>
                   <input
-                    className="shadow appearance-none border rounded w-full py-1 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                    className="placeholder:text-xs shadow appearance-none border rounded w-full py-1 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
                     id="username"
                     type="text"
                     placeholder="Harry Potter"
@@ -40,7 +40,7 @@ export default function Posts() {
                     Blog Date
                   </label>
                   <input
-                    className="shadow appearance-none border rounded w-full py-1 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                    className="placeholder:text-xs shadow appearance-none border rounded w-full py-1 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
                     id="date"
                     type="text"
                     placeholder="31/1/2024"
@@ -54,7 +54,7 @@ export default function Posts() {
                     Slug
                   </label>
                   <input
-                    className="shadow appearance-none border rounded w-full py-1 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                    className="placeholder:text-xs shadow appearance-none border rounded w-full py-1 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
                     id="slug"
                     type="text"
                     placeholder="harry-potter"
@@ -62,7 +62,7 @@ export default function Posts() {
                 </div>
               </div>
 
-              <div className="mb-6 pt-4">
+              <div className="mb-4">
                 <label className="mb-0 block text-xs text-gray-700">
                   Image
                 </label>
@@ -89,6 +89,20 @@ export default function Posts() {
                       </span>
                     </div>
                   </label>
+                </div>
+                <div className="my-4">
+                  <label
+                    className="block text-gray-700 text-xs mb-0"
+                    htmlFor="content"
+                  >
+                    Content
+                  </label>
+                  <textarea
+                    className="placeholder:text-xs shadow appearance-none border rounded w-full py-1 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                    id="content"
+                    rows={8}
+                    placeholder="Type Here"
+                  />
                 </div>
               </div>
 
