@@ -2,6 +2,9 @@
 
 import Image from "next/image";
 import { useState } from "react";
+import Link from "next/link";
+import Header from "./Header";
+import Footer from "./Footer";
 
 export default function Home() {
   const [currentPage, setCurrentPage] = useState(1);
@@ -14,18 +17,7 @@ export default function Home() {
 
   return (
     <div className="flex flex-col min-h-screen">
-      <header className="bg-gray-200 p-4 flex justify-between items-center">
-        <div className="text-xl">Logo</div>
-        <div className="flex">
-          <input
-            type="text"
-            placeholder="Search"
-            className="p-2 mr-2 border border-gray-300 rounded"
-            aria-label="Search"
-          />
-          <button className="p-2 bg-blue-500 text-white rounded">Search</button>
-        </div>
-      </header>
+      <Header />
       <main className="flex-grow p-4 flex justify-center">
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 max-w-6xl">
           <div className="col-span-3">
@@ -69,10 +61,7 @@ export default function Home() {
           </div>
         </div>
       </main>
-      <footer className="bg-gray-200 p-4 flex justify-between items-center">
-        <div>Footer Logo</div>
-        <div>Footer Text</div>
-      </footer>
+      <Footer />
     </div>
   );
 }
