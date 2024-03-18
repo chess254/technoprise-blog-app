@@ -5,6 +5,8 @@ import Footer from "../components/Footer";
 import Header from "../components/Header";
 import blogData from "../blogData";
 import { redirect } from "next/navigation";
+import { useEdgeStore } from "../lib/edgestore";
+import Link from "next/link";
 
 export default function Posts() {
   const [formData, setFormData] = useState({
@@ -15,6 +17,13 @@ export default function Posts() {
     image: "",
   });
 
+  const [file, setFile] = useState<File>();
+  const [urls, setUrls] = useState<{
+    url: string | undefined;
+    thumbnailUrl: string;
+  }>();
+  const { edgestore } = useEdgeStore();
+
   // const history = useNavigate();
 
   const handleChange = (e) => {
@@ -24,6 +33,7 @@ export default function Posts() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    formData.image = urls?.url;
     const updatedBlogData = [...blogData, formData];
     blogData.push(formData);
     console.log("Updated Blog Data:", updatedBlogData);
@@ -96,11 +106,8 @@ export default function Posts() {
               </div>
 
               <div className="mb-4">
-                <label className="mb-0 block text-xs text-gray-700">
-                  Image
-                </label>
-
                 <div className="mb-8">{/* File input */}</div>
+
                 <div className="my-4">
                   <label
                     className="block text-gray-700 text-xs mb-0"
@@ -118,11 +125,45 @@ export default function Posts() {
                     onChange={handleChange}
                   />
                 </div>
+                <label
+                  className="mb-0 block text-xs text-gray-700"
+                  htmlFor="image"
+                >
+                  Image
+                </label>
+                <input
+                  id="image"
+                  type="file"
+                  onChange={(e) => {
+                    setFile(e.target.files?.[0]);
+                  }}
+                />
+
+                <p className="text-black">
+                  {urls?.url && <Link href={urls.url}>{urls.url}</Link>}
+                </p>
               </div>
 
               <div>
                 <button
                   type="submit"
+                  onClick={async () => {
+                    if (file) {
+                      const res = await edgestore.myPublicImages.upload({
+                        file,
+                      });
+                      //save data to db
+                      setUrls({
+                        url: res.url,
+                        thumbnailUrl: res.thumbnailUrl,
+                      });
+                      console.log(">>>>>>>>url" + res.url);
+                      setTimeout(() => {
+                        setFormData({ ...formData, image: res.url });
+                      }, 4000); // Use res.url instead of urls?.url
+                      // setFormData({ ...formData, image: res.url }); // Set formData.image with res.url
+                    }
+                  }}
                   className="hover:shadow-form w-full rounded-md bg-[#6A64F1] py-3 px-8 text-center text-base font-semibold text-white outline-none"
                 >
                   Send File

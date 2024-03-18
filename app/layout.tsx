@@ -3,6 +3,7 @@ import { Inter } from "next/font/google";
 import "./globals.css";
 import Header from "./components/Header";
 import Footer from "./components/Footer";
+import { EdgeStoreProvider } from "./lib/edgestore";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -20,7 +21,7 @@ export default function RootLayout({
     <html lang="en">
       <body className={inter.className}>
         <Header />
-        {children}
+        <EdgeStoreProvider>{children}</EdgeStoreProvider>
         {/* <Footer /> */}
       </body>
     </html>

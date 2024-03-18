@@ -31,11 +31,7 @@ export default function Home() {
               className="max-w-sm bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700"
             >
               <Link href={`/post/${blog.slug}`}>
-                <img
-                  className="rounded-t-lg"
-                  src="https://res.cloudinary.com/doyv2rmqe/image/upload/v1710677136/enfrsn180d8d3as0s1zw.jpg"
-                  alt=""
-                />
+                <img className="rounded-t-lg" src={blog.image} alt="" />
               </Link>
               <div className="p-5">
                 <Link href={`/post/${blog.slug}`}>
