@@ -4,6 +4,7 @@ import React, { useState } from "react";
 import Footer from "../components/Footer";
 import Header from "../components/Header";
 import blogData from "../blogData"; // Import the existing blogData array
+import { redirect } from "next/navigation";
 
 export default function Posts() {
   const [formData, setFormData] = useState({
@@ -13,6 +14,8 @@ export default function Posts() {
     content: "",
     image: "",
   });
+
+  // const history = useNavigate();
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -26,6 +29,7 @@ export default function Posts() {
     // You might want to validate the form data before updating the array
     console.log("Updated Blog Data:", updatedBlogData);
     console.log(blogData);
+    redirect("/");
     // Now you can use updatedBlogData as needed, for example, send it to a server
   };
 

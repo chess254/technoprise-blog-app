@@ -47,6 +47,11 @@ export default function Home() {
               key={index}
               className="max-w-sm bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700"
             >
+              <Link href={`/post/${blog.slug}`}>
+                <h5 className="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">
+                  {blog.title}
+                </h5>
+              </Link>
               <a href="#">
                 <img
                   className="rounded-t-lg"
