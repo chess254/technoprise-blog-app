@@ -9,11 +9,10 @@ import blogData from "./blogData";
 
 export default function Home() {
   const [currentPage, setCurrentPage] = useState(1);
-  const totalPages = 5; // Example total number of pages
+  const totalPages = 5;
 
   const handlePageChange = (page: number) => {
     setCurrentPage(page);
-    // You may fetch data for the new page here
   };
 
   return (
@@ -27,68 +26,26 @@ export default function Home() {
             <p className="text-lg mb-8">The voice of the excluded</p>
           </div>
           {blogData.map((blog, index) => (
-            // <div
-            //   key={index}
-            //   className="border border-gray-300 rounded p-4 space-y-4"
-            //   style={{ width: "337px", height: "387px" }}
-            //   role="article"
-            // >
-            //   <img
-            //     src="https://res.cloudinary.com/doyv2rmqe/image/upload/v1710677136/enfrsn180d8d3as0s1zw.jpg"
-            //     alt="Article Image"
-            //     className="w-full h-179 object-cover rounded-t"
-            //   />
-            //   <div className="text-sm text-gray-500">Date</div>
-            //   <h2 className="text-xl font-bold">Title</h2>
-            //   <p className="mt-2">Content</p>
-            // </div>
-
             <div
               key={index}
               className="max-w-sm bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700"
             >
               <Link href={`/post/${blog.slug}`}>
-                <h5 className="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">
-                  {blog.title}
-                </h5>
-              </Link>
-              <a href="#">
                 <img
                   className="rounded-t-lg"
                   src="https://res.cloudinary.com/doyv2rmqe/image/upload/v1710677136/enfrsn180d8d3as0s1zw.jpg"
                   alt=""
                 />
-              </a>
+              </Link>
               <div className="p-5">
-                <a href="#">
+                <Link href={`/post/${blog.slug}`}>
                   <h5 className="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">
                     {blog.title}
                   </h5>
-                </a>
+                </Link>{" "}
                 <p className="mb-3 font-normal text-gray-700 dark:text-gray-400">
-                  {blog.content}
+                  {blog.content.substring(0, 150)}...
                 </p>
-                <a
-                  href="#"
-                  className="inline-flex items-center px-3 py-2 text-sm font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
-                >
-                  Read more
-                  <svg
-                    className="rtl:rotate-180 w-3.5 h-3.5 ms-2"
-                    aria-hidden="true"
-                    xmlns="http://www.w3.org/2000/svg"
-                    fill="none"
-                    viewBox="0 0 14 10"
-                  >
-                    <path
-                      stroke="currentColor"
-                      stroke-linecap="round"
-                      stroke-linejoin="round"
-                      stroke-width="2"
-                      d="M1 5h12m0 0L9 1m4 4L9 9"
-                    />
-                  </svg>
-                </a>
               </div>
             </div>
           ))}
